@@ -37,9 +37,6 @@ class Board
     up_diag = [[0, 2], [1, 1], [2, 0]]
 
     [down_diag, up_diag].map do |diag|
-      # Note the `row, col` inside the block; this unpacks, or
-      # "destructures" the argument. Read more here:
-      # http://tony.pitluga.com/2011/08/08/destructuring-with-ruby.html
       diag.map { |row, col| @rows[row][col] }
     end
   end
@@ -61,7 +58,6 @@ class Board
   end
 
   def over?
-    # don't use Ruby's `or` operator; always prefer `||`
     won? || tied?
   end
 
@@ -78,11 +74,6 @@ class Board
     !winner.nil?
   end
 end
-
-# Notice how the Board has the basic rules of the game, but no logic
-# for actually prompting the user for moves. This is a rigorous
-# decomposition of the "game state" into its own pure object
-# unconcerned with how moves are processed.
 
 class TicTacToe
   class IllegalMoveError < RuntimeError
@@ -110,7 +101,6 @@ class TicTacToe
   end
 
   def show
-    # not very pretty printing!
     self.board.rows.each { |row| p row }
   end
 
